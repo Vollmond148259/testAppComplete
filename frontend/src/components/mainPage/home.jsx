@@ -29,6 +29,7 @@ export default function Home() {
       searchValue
     );
     dispatch(setShowCollection(filteredArray));
+    console.log("hello");
     searchValue && dispatch(setCurrentPage(1));
   }, [searchValue, blackList, timeFrame]);
   return (
