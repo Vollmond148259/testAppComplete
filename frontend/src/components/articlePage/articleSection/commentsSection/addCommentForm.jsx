@@ -19,8 +19,8 @@ export default function AddCommentForm({ publishNewComment }) {
   };
 
   const handleClose = () => {
-    setUserName(null);
     setComment(null);
+    setUserName(null);
     setOpen(false);
   };
   return (

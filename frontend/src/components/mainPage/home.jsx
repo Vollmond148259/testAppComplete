@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { difference } from "lodash";
 import PostsSection from "./postsSection/postsSection";
+import PostSkeleton from "./skeleton/postSkeleton";
 import FilterSection from "./filterSection/filterSection";
 import {
   setCurrentPage,
@@ -11,8 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { filtered, filterByDate } from "../utils/utils";
 import { Typography } from "@mui/material";
 
-export default function Home() {
+function Home() {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.articles.loading);
   const searchValue = useSelector((state) => state.articles.searchingValue);
   const articlesCollection = useSelector((state) => state.articles.collection);
   const showCollection = useSelector((state) => state.articles.showCollection);
@@ -28,19 +30,28 @@ export default function Home() {
       difference(timeFrameArray, blackList),
       searchValue
     );
-    dispatch(setShowCollection(filteredArray));
     searchValue && dispatch(setCurrentPage(1));
+    dispatch(setShowCollection(filteredArray));
   }, [searchValue, blackList, timeFrame]);
   return (
     <Box>
       <Box my={4}>
         <FilterSection />
       </Box>
-      {showCollection.length === 0 ? (
-        <Typography variant="h5">Articles not found</Typography>
-      ) : (
-        <PostsSection articles={showCollection} />
-      )}
+      <>
+        {loading ? (
+          <PostSkeleton />
+        ) : (
+          <>
+            {showCollection.length === 0 ? (
+              <Typography variant="h5">Articles not found</Typography>
+            ) : (
+              <PostsSection articles={showCollection} />
+            )}
+          </>
+        )}
+      </>
     </Box>
   );
 }
+export default Home;

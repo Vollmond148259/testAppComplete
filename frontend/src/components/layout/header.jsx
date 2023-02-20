@@ -21,7 +21,7 @@ import { useDispatch } from "react-redux";
 import { setSearchingValue } from "../../redux/slices/articlesSlice";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 
-export default function Header() {
+function Header() {
   const { pathname } = useLocation();
   const [hideElements, setHideElements] = useState(false);
   const dispatch = useDispatch();
@@ -99,3 +99,4 @@ export default function Header() {
     </Box>
   );
 }
+export default Header;

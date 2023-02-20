@@ -7,12 +7,9 @@ import { TextContainer } from "./elements/articleSectionElements";
 import CommentsListSection from "./commentsSection/commentsListSection";
 import MobileCommentsListWrapper from "./commentsSection/mobileCommentsListSection";
 import AddCommentForm from "./commentsSection/addCommentForm";
+import PropTypes from "prop-types";
 
-export default function ArticleSection({
-  publishNewComment,
-  article,
-  comments,
-}) {
+function ArticleSection({ publishNewComment, article, comments }) {
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
   const [showComments, setShowComments] = useState(false);
   return (
@@ -61,3 +58,22 @@ export default function ArticleSection({
     </>
   );
 }
+ArticleSection.propTypes = {
+  publishNewComment: PropTypes.func,
+  article: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    date: PropTypes.string,
+  }),
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      text: PropTypes.string,
+      user: PropTypes.string,
+      article: PropTypes.string,
+    })
+  ),
+};
+
+export default ArticleSection;

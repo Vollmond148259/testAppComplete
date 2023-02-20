@@ -6,7 +6,8 @@ import { setArticle, setComments } from "../redux/slices/articlesSlice";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../redux/slices/articlesSlice";
-export default function ArticlePage() {
+
+function ArticlePage() {
   const article = useSelector((state) => state.articles.article);
   const comments = useSelector((state) => state.articles.comments);
   const loading = useSelector((state) => state.articles.loading);
@@ -24,12 +25,12 @@ export default function ArticlePage() {
     axios.get(`/api/articles/${id}`).then((response) => {
       dispatch(setArticle(response.data));
     });
-  }, []);
+  }, [dispatch, id]);
   useEffect(() => {
     axios.get(`/api/comments?article=${id}`).then((response) => {
       dispatch(setComments(response.data));
     });
-  }, [loading]);
+  }, [loading, dispatch, id]);
 
   return (
     <Box mt={3} mb={10} px={1}>
@@ -43,3 +44,4 @@ export default function ArticlePage() {
     </Box>
   );
 }
+export default ArticlePage;

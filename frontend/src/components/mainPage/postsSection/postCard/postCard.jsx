@@ -12,8 +12,9 @@ import { getFirstSymbolForAvatar } from "../../../utils/utils";
 import CustomLink from "../../../../elements/customLink";
 import { setBlackList } from "../../../../redux/slices/articlesSlice";
 import { createPreview } from "../../../utils/utils";
+import PropTypes from "prop-types";
 
-export default function PostCard({ article }) {
+function PostCard({ article }) {
   const dispatch = useDispatch();
   return (
     <StyledCard>
@@ -52,3 +53,14 @@ export default function PostCard({ article }) {
     </StyledCard>
   );
 }
+
+PostCard.propTypes = {
+  article: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    date: PropTypes.string,
+  }),
+};
+
+export default PostCard;

@@ -1,10 +1,10 @@
-import * as React from "react";
+import { PropTypes } from "prop-types";
 import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-export default function BaseDatePicker({ label, startDate, date, setDate }) {
+function BaseDatePicker({ label, startDate, date, setDate }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
@@ -21,3 +21,10 @@ export default function BaseDatePicker({ label, startDate, date, setDate }) {
     </LocalizationProvider>
   );
 }
+BaseDatePicker.propTypes = {
+  label: PropTypes.string,
+  startDate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  date: PropTypes.number,
+  setDate: PropTypes.func,
+};
+export default BaseDatePicker;

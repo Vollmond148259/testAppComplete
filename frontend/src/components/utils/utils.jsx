@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
 import map from "lodash/mapKeys";
+
 const convertDate = (date) => {
   return DateTime.fromISO(date).toFormat("yyyy LLL dd");
 };
@@ -21,8 +22,9 @@ function filtered(array, value) {
   });
   return tempArray;
 }
+
 const getFirstSymbolForAvatar = (title) => {
-  return title.slice(0, 1);
+  return title.slice(0, 1).toUpperCase();
 };
 
 const filterByDate = (arr, { start, end }) => {
@@ -33,13 +35,16 @@ const filterByDate = (arr, { start, end }) => {
     return !((start && start > date) || (end && end < date));
   });
 };
+
 const divideItems = (array, currentPage, postOnPage) => {
   return array.slice((currentPage - 1) * postOnPage, currentPage * postOnPage);
 };
+
 const createPreview = (text) => {
   let tempArray = text.split(" ");
   return tempArray.slice(0, 13).join(" ");
 };
+
 export {
   convertDate,
   filtered,

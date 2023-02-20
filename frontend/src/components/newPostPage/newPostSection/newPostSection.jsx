@@ -1,4 +1,6 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
   Box,
   Paper,
@@ -7,8 +9,10 @@ import {
   Stack,
   Button,
 } from "@mui/material";
+import { useSelector } from "react-redux";
 import CustomLink from "../../../elements/customLink";
-export default function NewPostSection({ publishNewArticle }) {
+function NewPostSection({ publishNewArticle }) {
+  const loading = useSelector((state) => state.articles.loading);
   const [title, setTitle] = useState(null);
   const [text, setText] = useState(null);
   return (
@@ -55,13 +59,17 @@ export default function NewPostSection({ publishNewArticle }) {
               <Button variant="outlined">Cancel</Button>
             </CustomLink>
             {title && text ? (
-              <Button
+              <LoadingButton
+                loading={loading}
                 onClick={() => {
-                  publishNewArticle({ title: title, text: text });
+                  publishNewArticle({
+                    title: title,
+                    text: text,
+                  });
                 }}
                 variant="outlined">
                 Create
-              </Button>
+              </LoadingButton>
             ) : (
               <Button disabled variant="outlined">
                 Create
@@ -73,3 +81,7 @@ export default function NewPostSection({ publishNewArticle }) {
     </Box>
   );
 }
+NewPostSection.propTypes = {
+  publishNewArticle: PropTypes.func,
+};
+export default NewPostSection;

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../../redux/slices/articlesSlice";
 import map from "lodash/map";
+import PropTypes from "prop-types";
 import { divideItems } from "../../utils/utils";
 import { postOnPage } from "./constant";
 import PostCard from "./postCard/postCard";
@@ -51,4 +52,14 @@ function PostsSection({ articles }) {
     </>
   );
 }
+PostsSection.propTypes = {
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string,
+      text: PropTypes.string,
+      date: PropTypes.string,
+    })
+  ),
+};
 export default PostsSection;

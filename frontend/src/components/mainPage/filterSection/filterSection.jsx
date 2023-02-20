@@ -1,22 +1,25 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import BaseDatePicker from "./datePicker";
 import { Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setTimeFrameStart,
   setTimeFrameEnd,
+  setCurrentPage,
 } from "../../../redux/slices/articlesSlice";
-export default function FilterSection() {
+function FilterSection() {
   const dispatch = useDispatch();
   const [fromDefaultDate, setFromDefaultDate] = useState(null);
   const fromDate = useSelector((state) => state.articles.timeFrame.start);
   const toDate = useSelector((state) => state.articles.timeFrame.end);
   const setEndDate = (endDate) => {
     dispatch(setTimeFrameEnd(endDate));
+    dispatch(setCurrentPage(1));
   };
   const setStartDate = (startDate) => {
     setFromDefaultDate(startDate);
     dispatch(setTimeFrameStart(startDate));
+    dispatch(setCurrentPage(1));
   };
   return (
     <>
@@ -41,3 +44,4 @@ export default function FilterSection() {
     </>
   );
 }
+export default memo(FilterSection);
