@@ -15,20 +15,18 @@ App.propTypes = {
 const clientSideEmotionCache = createEmotionCache();
 function App({ emotionCache = clientSideEmotionCache }) {
   return (
-    <>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index path="/" element={<MainPage />} />
-              <Route path="articles/:id" element={<ArticlePage />} />
-              <Route path="articles/create" element={<CreatePostPage />} />
-            </Route>
-          </Routes>
-        </ThemeProvider>
-      </CacheProvider>
-    </>
+    <CacheProvider value={emotionCache}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index path="/" element={<MainPage />} />
+            <Route path="articles/:id" element={<ArticlePage />} />
+            <Route path="articles/create" element={<CreatePostPage />} />
+          </Route>
+        </Routes>
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 

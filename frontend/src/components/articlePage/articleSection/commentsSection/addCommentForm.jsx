@@ -24,7 +24,7 @@ export default function AddCommentForm({ publishNewComment }) {
     setOpen(false);
   };
   return (
-    <div>
+    <>
       <Button variant="contained" onClick={handleClickOpen}>
         add comment
       </Button>
@@ -80,6 +80,6 @@ export default function AddCommentForm({ publishNewComment }) {
           )}
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }

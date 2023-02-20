@@ -1,16 +1,12 @@
 import { Typography, Stack, Button, Box } from "@mui/material";
 import { useState } from "react";
-import { styled } from "@mui/material/styles";
 import theme from "../../../styles/theme";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { convertDate } from "../../utils/utils";
+import { TextContainer } from "./elements/articleSectionElements";
 import CommentsListSection from "./commentsSection/commentsListSection";
 import MobileCommentsListWrapper from "./commentsSection/mobileCommentsListSection";
 import AddCommentForm from "./commentsSection/addCommentForm";
-const TextContainer = styled(Box)(() => ({
-  paddingRight: "20px",
-  overflow: "scroll",
-}));
 
 export default function ArticleSection({
   publishNewComment,

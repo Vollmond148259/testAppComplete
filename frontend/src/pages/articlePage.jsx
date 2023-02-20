@@ -12,12 +12,14 @@ export default function ArticlePage() {
   const loading = useSelector((state) => state.articles.loading);
   const dispatch = useDispatch();
   const { id } = useParams();
+
   const publishNewComment = (comment) => {
     dispatch(setLoading(true));
     axios
       .post("/api/comments", comment)
       .then(() => dispatch(setLoading(false)));
   };
+
   useEffect(() => {
     axios.get(`/api/articles/${id}`).then((response) => {
       dispatch(setArticle(response.data));
@@ -30,16 +32,14 @@ export default function ArticlePage() {
   }, [loading]);
 
   return (
-    <>
-      <Box mt={3} mb={10} px={1}>
-        {article && (
-          <ArticleSection
-            publishNewComment={publishNewComment}
-            article={article}
-            comments={comments}
-          />
-        )}
-      </Box>
-    </>
+    <Box mt={3} mb={10} px={1}>
+      {article && (
+        <ArticleSection
+          publishNewComment={publishNewComment}
+          article={article}
+          comments={comments}
+        />
+      )}
+    </Box>
   );
 }

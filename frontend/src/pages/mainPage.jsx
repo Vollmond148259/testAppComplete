@@ -14,9 +14,5 @@ export default function MainPage() {
       dispatch(setShowCollection(response.data));
     });
   }, []);
-  return (
-    <>
-      <Home />
-    </>
-  );
+  return <Home />;
 }

@@ -3,17 +3,14 @@ import NewPostSection from "../components/newPostPage/newPostSection/newPostSect
 import axios from "axios";
 export default function CreatePostPage() {
   const navigate = useNavigate();
+
   const publishNewArticle = (article) => {
-    axios.post("/api/articles", article).then((response) => {
+    axios.post("/api/articles", article).then(() => {
       setTimeout(() => {
         navigate("/");
       }, 1000);
     });
   };
 
-  return (
-    <>
-      <NewPostSection publishNewArticle={publishNewArticle} />
-    </>
-  );
+  return <NewPostSection publishNewArticle={publishNewArticle} />;
 }

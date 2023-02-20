@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import BaseDatePicker from "./datePicker";
 import { Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,6 @@ export default function FilterSection() {
   const fromDate = useSelector((state) => state.articles.timeFrame.start);
   const toDate = useSelector((state) => state.articles.timeFrame.end);
   const setEndDate = (endDate) => {
-    console.log(endDate);
     dispatch(setTimeFrameEnd(endDate));
   };
   const setStartDate = (startDate) => {

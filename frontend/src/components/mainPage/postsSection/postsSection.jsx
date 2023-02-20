@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../../redux/slices/articlesSlice";
 import map from "lodash/map";
+import { divideItems } from "../../utils/utils";
 import { postOnPage } from "./constant";
 import PostCard from "./postCard/postCard";
-const divideItems = (array, currentPage, postOnPage) => {
-  return array.slice((currentPage - 1) * postOnPage, currentPage * postOnPage);
-};
+
 function PostsSection({ articles }) {
   const dispatch = useDispatch();
   const [pageCount, setPageCount] = useState(1);
@@ -21,6 +20,9 @@ function PostsSection({ articles }) {
       setPageCount(Math.ceil(articles.length / postOnPage));
     };
     countPages(articles);
+    if (divideItems(articles, currentPage, postOnPage).length === 0) {
+      dispatch(setCurrentPage(currentPage - 1));
+    }
   }, [articles]);
 
   return (

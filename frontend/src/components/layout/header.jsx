@@ -1,67 +1,25 @@
 import { useState, useEffect } from "react";
-import { useLocation, redirect } from "react-router-dom";
-import { styled, alpha } from "@mui/material/styles";
+import { useLocation } from "react-router-dom";
+import {
+  Search,
+  SearchIconWrapper,
+  StyledInputBase,
+} from "./elements/headerElements";
 import {
   Box,
   AppBar,
   Stack,
   IconButton,
   Typography,
-  InputBase,
   Button,
   Container,
 } from "@mui/material";
 import CustomLink from "../../elements/customLink";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import SearchIcon from "@mui/icons-material/Search";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setSearchingValue } from "../../redux/slices/articlesSlice";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  height: "36px",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(() => ({
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  marginLeft: "10px",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    fontWeight: 500,
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    paddingRight: "10px",
-    paddingTop: "6px",
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "20ch",
-      "&:focus": {
-        width: "40ch",
-      },
-    },
-  },
-}));
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -93,7 +51,6 @@ export default function Header() {
                   </IconButton>
                 </CustomLink>
               )}
-
               <Typography
                 variant="h6"
                 noWrap

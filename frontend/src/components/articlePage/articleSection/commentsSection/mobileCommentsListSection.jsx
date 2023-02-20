@@ -41,7 +41,7 @@ export default function MobileCommentsListWrapper({
   );
 
   return (
-    <div>
+    <>
       {["left", "right", "top", "bottom"].map((anchor) => (
         <React.Fragment key={anchor}>
           <SwipeableDrawer
@@ -56,6 +56,6 @@ export default function MobileCommentsListWrapper({
           </SwipeableDrawer>
         </React.Fragment>
       ))}
-    </div>
+    </>
   );
 }

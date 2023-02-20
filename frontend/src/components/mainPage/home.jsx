@@ -29,21 +29,18 @@ export default function Home() {
       searchValue
     );
     dispatch(setShowCollection(filteredArray));
-    console.log("hello");
     searchValue && dispatch(setCurrentPage(1));
   }, [searchValue, blackList, timeFrame]);
   return (
-    <>
-      <Box>
-        <Box my={4}>
-          <FilterSection />
-        </Box>
-        {showCollection.length === 0 ? (
-          <Typography variant="h5">Articles not found</Typography>
-        ) : (
-          <PostsSection articles={showCollection} />
-        )}
+    <Box>
+      <Box my={4}>
+        <FilterSection />
       </Box>
-    </>
+      {showCollection.length === 0 ? (
+        <Typography variant="h5">Articles not found</Typography>
+      ) : (
+        <PostsSection articles={showCollection} />
+      )}
+    </Box>
   );
 }

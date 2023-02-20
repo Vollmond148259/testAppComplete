@@ -33,4 +33,18 @@ const filterByDate = (arr, { start, end }) => {
     return !((start && start > date) || (end && end < date));
   });
 };
-export { convertDate, filtered, getFirstSymbolForAvatar, filterByDate };
+const divideItems = (array, currentPage, postOnPage) => {
+  return array.slice((currentPage - 1) * postOnPage, currentPage * postOnPage);
+};
+const createPreview = (text) => {
+  let tempArray = text.split(" ");
+  return tempArray.slice(0, 13).join(" ");
+};
+export {
+  convertDate,
+  filtered,
+  getFirstSymbolForAvatar,
+  filterByDate,
+  divideItems,
+  createPreview,
+};
