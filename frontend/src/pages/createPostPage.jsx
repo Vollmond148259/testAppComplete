@@ -9,8 +9,7 @@ export default function CreatePostPage() {
 
   const publishNewArticle = (article) => {
     dispatch(setLoading(true));
-    axios.post("/api/articles", article).then((resp) => {
-      console.log(resp);
+    axios.post("/api/articles", article).then(() => {
       setTimeout(() => {
         dispatch(setLoading(false));
         navigate("/");
