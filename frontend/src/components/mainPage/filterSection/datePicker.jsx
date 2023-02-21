@@ -14,6 +14,7 @@ function BaseDatePicker({ label, startDate, date, setDate }) {
         label={label}
         value={date}
         onChange={(newValue) => {
+          console.log(newValue.$d.getTime());
           setDate(newValue.$d.getTime());
         }}
         renderInput={(params) => <TextField {...params} />}

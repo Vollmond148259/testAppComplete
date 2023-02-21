@@ -28,8 +28,10 @@ const getFirstSymbolForAvatar = (title) => {
 };
 
 const filterByDate = (arr, { start, end }) => {
+  let temp = new Date(end);
+  let currentTimeZoneOffset = temp.getTimezoneOffset() * 60 * 1000;
   start = start ? new Date(start) : null;
-  end = end ? new Date(end) : null;
+  end = end ? new Date(end) - currentTimeZoneOffset : null;
   return arr.filter(({ date }) => {
     date = new Date(date);
     return !((start && start > date) || (end && end < date));
