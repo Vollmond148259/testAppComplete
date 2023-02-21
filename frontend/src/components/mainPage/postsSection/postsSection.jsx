@@ -1,5 +1,5 @@
 import { Box, Grid, Pagination } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../../redux/slices/articlesSlice";
 import map from "lodash/map";
@@ -25,7 +25,6 @@ function PostsSection({ articles }) {
       dispatch(setCurrentPage(currentPage - 1));
     }
   }, [articles]);
-
   return (
     <>
       <Grid px={1} container rowSpacing={{ xs: 1.5, md: 4 }} columnSpacing={4}>

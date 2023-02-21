@@ -31,7 +31,6 @@ function ArticlePage() {
       dispatch(setComments(response.data));
     });
   }, [loading, dispatch, id]);
-
   return (
     <Box mt={3} mb={10} px={1}>
       {article && (

@@ -20,7 +20,6 @@ function Home() {
   const showCollection = useSelector((state) => state.articles.showCollection);
   const blackList = useSelector((state) => state.articles.blackList);
   const timeFrame = useSelector((state) => state.articles.timeFrame);
-
   useEffect(() => {
     const timeFrameArray = filterByDate(articlesCollection, {
       start: timeFrame.start,
